@@ -10,7 +10,7 @@
     "build:fs": "rollup -c scripts/config.js --environment TARGET:fs",
     "build:cli": "rollup -c scripts/config.js --environment TARGET:cli",
     "build:utils": "rollup -c scripts/config.js --environment TARGET:utils",
-    "publish": "pnpm -r publish --access public"
+    "publish": "pnpm publish --access public"
   },
   "devDependencies": {
     "@babel/core": "^7.19.0",
