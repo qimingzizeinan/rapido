@@ -1,0 +1,7 @@
+{
+  "extends": "../../tsconfig",
+  "include": ["packages/cli/src"],
+  "ts-node": {
+    "esm": true
+  }
+}
