@@ -47,6 +47,27 @@ export async function getGitBranchList() {
 }
 
 /**
+ * git not add
+ */
+export async function getGitNotAdd() {
+  try {
+    return await cmd('git status -s');
+  } catch (error) {
+    log(JSON.stringify(error));
+  }
+}
+
+/**
+ * git need to commit
+ */
+export async function gitNeedToCommit() {
+  const result = JSON.parse((await getGitStatus()) as any);
+  if (result) {
+    return result.message.includes('Changes not staged for commit');
+  }
+}
+
+/**
  * 获取git 当前分支
  */
 export async function getGitCurrentBranch() {
