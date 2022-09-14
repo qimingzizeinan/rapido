@@ -16,8 +16,7 @@
     "clear": "rimraf 'packages/*/{lib,node_modules}' && rimraf node_modules",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "pnpm build && pnpm release:only",
-    "release:only": "changeset publish -r --access=public --registry=https://registry.npmjs.com/"
+    "release": "pnpm publish -r --access=public"
   },
   "devDependencies": {
     "@babel/core": "^7.19.0",
