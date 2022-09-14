@@ -11,6 +11,7 @@ export declare type OutPut = {
     exitCode: number;
 };
 export declare function config(): void;
+export declare function exitCodeInfo(exitCode: number | null): string | undefined;
 /**
  * 切换工作目录
  * @param cwd
@@ -23,4 +24,4 @@ export declare function errnoMessage(errno: number | undefined): string;
  */
 export declare function pwd(): string;
 export declare function cmd(cmd: string): Promise<unknown>;
-export declare function output(message: string, exitCode: number | string | undefined): string;
+export declare function output(message: string, exitCode: number | string | undefined | null): string;

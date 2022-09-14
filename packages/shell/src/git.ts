@@ -24,6 +24,16 @@ export async function getGitBranch() {
 }
 
 /**
+ * git push
+ */
+export async function gitPush() {
+  try {
+    return await cmd('git push');
+  } catch (error) {
+    log(JSON.stringify(error));
+  }
+}
+/**
  * 获取git 分支列表
  */
 export async function getGitBranchList() {

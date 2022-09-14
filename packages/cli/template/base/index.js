@@ -6,6 +6,8 @@ const {
   getGitBranchList,
   switchGitBranch,
   gitCommit,
+  getGitStatus,
+  gitPush,
 } = require('@rapidoq/shell');
 const path = require('path');
 let inquirer;
@@ -86,12 +88,13 @@ async function run() {
     const switchBranch = await selectBranch();
     await switchGitBranch(switchBranch);
   }
-
+  await cd('');
   await gitAddAll();
   // 获取commit信息
   const info = await getCommitInfoFromInterminal();
   // commit
   await gitCommit(info);
+  await gitPush();
 
   console.log('流程已完成');
 }

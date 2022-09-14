@@ -9,6 +9,10 @@ export declare function getGitStatus(): Promise<unknown>;
  */
 export declare function getGitBranch(): Promise<unknown>;
 /**
+ * git push
+ */
+export declare function gitPush(): Promise<unknown>;
+/**
  * 获取git 分支列表
  */
 export declare function getGitBranchList(): Promise<any>;

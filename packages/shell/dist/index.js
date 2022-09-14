@@ -16,6 +16,42 @@ const defaults = {
     shell: true,
 };
 function config() { }
+function exitCodeInfo(exitCode) {
+    return {
+        2: 'Misuse of shell builtins',
+        126: 'Invoked command cannot execute',
+        127: 'Command not found',
+        128: 'Invalid exit argument',
+        129: 'Hangup',
+        130: 'Interrupt',
+        131: 'Quit and dump core',
+        132: 'Illegal instruction',
+        133: 'Trace/breakpoint trap',
+        134: 'Process aborted',
+        135: 'Bus error: "access to undefined portion of memory object"',
+        136: 'Floating point exception: "erroneous arithmetic operation"',
+        137: 'Kill (terminate immediately)',
+        138: 'User-defined 1',
+        139: 'Segmentation violation',
+        140: 'User-defined 2',
+        141: 'Write to pipe with no one reading',
+        142: 'Signal raised by alarm',
+        143: 'Termination (request to terminate)',
+        145: 'Child process terminated, stopped (or continued*)',
+        146: 'Continue if stopped',
+        147: 'Stop executing temporarily',
+        148: 'Terminal stop signal',
+        149: 'Background process attempting to read from tty ("in")',
+        150: 'Background process attempting to write to tty ("out")',
+        151: 'Urgent data available on socket',
+        152: 'CPU time limit exceeded',
+        153: 'File size limit exceeded',
+        154: 'Signal raised by timer counting virtual time: "virtual timer expired"',
+        155: 'Profiling timer expired',
+        157: 'Pollable event',
+        159: 'Bad syscall',
+    }[exitCode || -1];
+}
 /**
  * 切换工作目录
  * @param cwd
@@ -160,21 +196,36 @@ function pwd() {
 function cmd(cmd) {
     return new Promise((resolve, reject) => {
         const child = child_process.spawn(cmd, defaults);
+        let stderr = '';
         child.stdout.on('data', (data) => {
-            console.log('stdout', data.toString());
             resolve(output(data.toString(), 0));
         });
         child.stderr.on('data', (data) => {
-            console.log('stderr',data.toString());
+            stderr = stderr + data.toString();
             resolve(output(data.toString(), 0));
         });
         child.on('error', (err) => {
-            console.log('error', err);
             const message = `${err.message}\n` +
                 `    errno: ${err.errno} (${errnoMessage(err.errno)})\n` +
                 `    code: ${err.code}\n`;
             // log(message);
             reject(output(message, err.code));
+        });
+        child.on('close', (code, signal) => {
+            let message = `exit code: ${code}`;
+            if (code != 0 || signal != null) {
+                message = `${stderr || '\n'}`;
+                message += `\n    exit code: ${code}${exitCodeInfo(code) ? ' (' + exitCodeInfo(code) + ')' : ''}`;
+                if (signal != null) {
+                    message += `\n    signal: ${signal}`;
+                }
+            }
+            if (code === 0) {
+                resolve(output(message, code));
+            }
+            else {
+                reject(output(message, code));
+            }
         });
     });
 }
@@ -227,6 +278,17 @@ async function getGitBranch() {
     }
 }
 /**
+ * git push
+ */
+async function gitPush() {
+    try {
+        return await cmd('git push');
+    }
+    catch (error) {
+        log_1(JSON.stringify(error));
+    }
+}
+/**
  * 获取git 分支列表
  */
 async function getGitBranchList() {
@@ -258,7 +320,6 @@ async function getGitCurrentBranch() {
  */
 async function gitAddAll() {
     try {
-        
         const { message } = JSON.parse((await cmd('git add .')));
         return message;
     }
@@ -363,12 +424,14 @@ exports.cd = cd;
 exports.cmd = cmd;
 exports.config = config;
 exports.errnoMessage = errnoMessage;
+exports.exitCodeInfo = exitCodeInfo;
 exports.getGitBranch = getGitBranch;
 exports.getGitBranchList = getGitBranchList;
 exports.getGitCurrentBranch = getGitCurrentBranch;
 exports.getGitStatus = getGitStatus;
 exports.gitAddAll = gitAddAll;
 exports.gitCommit = gitCommit;
+exports.gitPush = gitPush;
 exports.installDep = installDep;
 exports.isInstalled = isInstalled;
 exports.output = output;
