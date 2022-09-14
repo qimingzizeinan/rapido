@@ -10,12 +10,18 @@
     "build:fs": "rollup -c scripts/config.js --environment TARGET:fs",
     "build:cli": "rollup -c scripts/config.js --environment TARGET:cli",
     "build:utils": "rollup -c scripts/config.js --environment TARGET:utils",
-    "publish": "pnpm publish --access public"
+    "build": "pnpm --filter=@qftjs/* run build",
+    "clear": "rimraf 'packages/*/{lib,node_modules}' && rimraf node_modules",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "pnpm build && pnpm release:only",
+    "release:only": "changeset publish --registry=https://registry.npmjs.com/"
   },
   "devDependencies": {
     "@babel/core": "^7.19.0",
     "@babel/preset-env": "^7.19.0",
     "@babel/preset-typescript": "^7.18.6",
+    "@changesets/cli": "^2.24.4",
     "@rollup/plugin-alias": "^3.1.9",
     "@rollup/plugin-babel": "^5.3.1",
     "@rollup/plugin-commonjs": "^22.0.2",
@@ -34,6 +40,5 @@
     "typescript": "^4.8.2",
     "vite": "^3.1.0",
     "vitest": "^0.23.1"
-  },
-  "dependencies": {}
+  }
 }

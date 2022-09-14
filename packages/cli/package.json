@@ -1,6 +1,6 @@
 {
   "name": "@rapido/cli",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,8 +13,8 @@
   "author": "qimingzizeinan",
   "license": "ISC",
   "dependencies": {
-    "@rapido/fs": "workspace:^1.0.0",
-    "@rapido/shell": "workspace:^1.0.0",
+    "@rapido/fs": "workspace:^2.0.0",
+    "@rapido/shell": "workspace:^2.0.0",
     "commander": "^9.4.0",
     "inquirer": "^9.1.1"
   }
