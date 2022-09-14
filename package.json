@@ -1,5 +1,5 @@
 {
-  "name": "rapidoq",
+  "name": "@rapido",
   "version": "1.0.0",
   "scripts": {
     "dev:shell": "rollup -w -c scripts/config.js --environment TARGET:shell",
