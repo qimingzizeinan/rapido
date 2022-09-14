@@ -56,7 +56,6 @@ export async function getGitNotAdd() {
     log(JSON.stringify(error));
   }
 }
-
 /**
  * git need to commit
  */
