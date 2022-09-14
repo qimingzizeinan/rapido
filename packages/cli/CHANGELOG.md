@@ -1,4 +1,4 @@
-# @rapidoq/shell
+# @rapidoq/cli
 
 ## 2.0.0
 
@@ -9,4 +9,5 @@
 ### Patch Changes
 
 - Updated dependencies
-  - @rapidoq/utils@2.0.0
+  - @rapidoq/shell@2.0.0
+  - @rapidoq/fs@2.0.0

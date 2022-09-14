@@ -52,8 +52,8 @@ importers:
 
   packages/cli:
     specifiers:
-      '@rapidoq/fs': workspace:^1.0.0
-      '@rapidoq/shell': workspace:^1.0.0
+      '@rapidoq/fs': workspace:^2.0.0
+      '@rapidoq/shell': workspace:^2.0.0
       commander: ^9.4.0
       inquirer: ^9.1.1
     dependencies:
