@@ -1,4 +1,5 @@
 {
+  "name": "rapido",
   "scripts": {
     "dev:shell": "rollup -w -c scripts/config.js --environment TARGET:shell",
     "dev:fs": "rollup -w -c scripts/config.js --environment TARGET:fs",
