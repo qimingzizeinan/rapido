@@ -1,4 +1,4 @@
-import { log } from '@rapido/utils';
+import { log } from '@rapidoq/utils';
 import { cmd } from './cmd';
 
 /**

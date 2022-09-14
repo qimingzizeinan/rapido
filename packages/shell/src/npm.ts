@@ -1,5 +1,5 @@
 import { cmd } from './cmd';
-import { log } from '@rapido/utils';
+import { log } from '@rapidoq/utils';
 
 /**
  * 判断是否安装了包

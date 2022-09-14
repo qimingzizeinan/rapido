@@ -11,6 +11,8 @@
     "build:cli": "rollup -c scripts/config.js --environment TARGET:cli",
     "build:utils": "rollup -c scripts/config.js --environment TARGET:utils",
     "build": "pnpm --filter=@qftjs/* run build",
+    "cli:install": "pnpm uninstall @rapidoq/fs @rapidoq/shell --filter @rapidoq/cli && pnpm install @rapidoq/fs @rapidoq/shell --filter @rapidoq/cli",
+    "build:all": "pnpm run build:shell && pnpm run build:fs && pnpm run build:utils && pnpm run cli:install && pnpm run build:cli ",
     "clear": "rimraf 'packages/*/{lib,node_modules}' && rimraf node_modules",
     "changeset": "changeset",
     "version-packages": "changeset version",

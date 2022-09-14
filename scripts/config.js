@@ -75,7 +75,7 @@ function genConfig(name) {
           '../',
           `packages/${name}/tsconfig.json`
         ),
-        cacheRoot: path.resolve(__dirname, '../', 'node_modules/.rts2_cache'),
+        // cacheRoot: path.resolve(__dirname, '../', 'node_modules/.rts2_cache'),
         tsconfigOverride: {
           compilerOptions: {
             // if targeting browser, target es5

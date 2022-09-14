@@ -1,7 +1,7 @@
 import inquirer from 'inquirer';
 import path from 'path';
 import { program } from 'commander';
-import { copyToTaget } from '@rapido/fs';
+import { copyToTaget } from '@rapidoq/fs';
 
 const templates = [
   {

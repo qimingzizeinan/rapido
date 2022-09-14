@@ -1,5 +1,5 @@
 /*!
- * Rapido vundefined
+ * Rapido v1.0.0
  * (c) 2022-2022
  * Released under the MIT License.
  */

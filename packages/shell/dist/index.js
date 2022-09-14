@@ -1,5 +1,5 @@
 /*!
- * Rapido vundefined
+ * Rapido v1.0.0
  * (c) 2022-2022
  * Released under the MIT License.
  */
@@ -161,12 +161,15 @@ function cmd(cmd) {
     return new Promise((resolve, reject) => {
         const child = child_process.spawn(cmd, defaults);
         child.stdout.on('data', (data) => {
+            console.log('stdout', data.toString());
             resolve(output(data.toString(), 0));
         });
         child.stderr.on('data', (data) => {
+            console.log('stderr',data.toString());
             resolve(output(data.toString(), 0));
         });
         child.on('error', (err) => {
+            console.log('error', err);
             const message = `${err.message}\n` +
                 `    errno: ${err.errno} (${errnoMessage(err.errno)})\n` +
                 `    code: ${err.code}\n`;
@@ -188,7 +191,7 @@ function output(message, exitCode) {
 var dist = {};
 
 /*!
- * Rapido vundefined
+ * Rapido v1.0.0
  * (c) 2022-2022
  * Released under the MIT License.
  */
@@ -255,6 +258,7 @@ async function getGitCurrentBranch() {
  */
 async function gitAddAll() {
     try {
+        
         const { message } = JSON.parse((await cmd('git add .')));
         return message;
     }
