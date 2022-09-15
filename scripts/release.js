@@ -108,7 +108,7 @@ async function main() {
   if (stdout) {
     step('\ngit 提交');
     await runCmd('git', ['add', '-A']);
-    await runCmd('git', ['commit', '-m', `release: v${targetVersion}`]);
+    await runCmd('git', ['commit', '-m', `feat: release v${targetVersion}`]);
   } else {
     console.log('No changes to commit.');
   }
