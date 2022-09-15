@@ -12,7 +12,8 @@
     "build:utils": "rollup -c scripts/config.js --environment TARGET:utils",
     "cli:install": "pnpm uninstall @rapidoq/fs @rapidoq/shell --filter @rapidoq/cli && pnpm install @rapidoq/fs @rapidoq/shell --filter @rapidoq/cli",
     "build:all": "pnpm run build:shell && pnpm run build:fs && pnpm run build:utils && pnpm run cli:install && pnpm run build:cli ",
-    "release": "node scripts/release.js"
+    "release": "node scripts/release.js",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "devDependencies": {
     "@babel/core": "^7.19.0",
@@ -30,6 +31,7 @@
     "@types/node": "^18.7.16",
     "babel-jest": "^29.0.2",
     "chalk": "^4.1.2",
+    "conventional-changelog-cli": "^2.2.2",
     "esbuild": "^0.15.7",
     "execa": "^4.1.0",
     "husky": "^8.0.1",

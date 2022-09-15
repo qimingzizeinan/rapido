@@ -100,8 +100,9 @@ async function main() {
   await build(releasePackages);
 
   // 生成 changelog
-  // step('\nGenerating changelog...');
-  // await runCmd(`pnpm`, ['run', 'changelog']);
+  step('\nGenerating changelog...');
+  await runCmd(`pnpm`, ['run', 'changelog']);
+
   // commit
   const { stdout } = await runCmd('git', ['diff'], { stdio: 'pipe' });
   if (stdout) {
