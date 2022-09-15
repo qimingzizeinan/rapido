@@ -54,6 +54,8 @@ async function publishPackage(pkgName, version) {
       stdio: 'pipe',
     });
     console.log(chalk.green(`成功发布 ${publishedName}@${version}`));
+    // push到github
+    await runCmd('git', ['push']);
   } catch (e) {
     if (e.stderr.match(/previously published/)) {
       console.log(chalk.red(`跳过已发布的包: ${publishedName}`));
@@ -123,9 +125,6 @@ async function _publish(releasePackages) {
   for (const pkg of releasePackages) {
     await publishPackage(pkg, targetVersion);
   }
-
-  // push到github
-  await runCmd('git', ['push']);
 
   step('\n已完成');
 }
