@@ -61,6 +61,7 @@ const builds = {
 };
 
 function genConfig(name) {
+  console.log('name', name);
   const opts = builds[name];
   // console.log('opts', opts);
   // return;
@@ -103,18 +104,6 @@ function genConfig(name) {
       }
     },
   };
-
-  // console.log('pluging', config.plugins)
-
-  //   // built-in vars
-  //   const vars = {
-  //     __VERSION__: version,
-  //     __DEV__: `process.env.NODE_ENV !== 'production'`,
-  //     __TEST__: false,
-  //     __GLOBAL__: opts.format === 'umd' || name.includes('browser'),
-  //   };
-
-  //   config.plugins.push(replace(vars));
 
   Object.defineProperty(config, '_name', {
     enumerable: false,

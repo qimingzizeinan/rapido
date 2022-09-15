@@ -1,5 +1,5 @@
 /*!
- * Rapido v1.0.0
+ * Rapido v2.0.0
  * (c) 2022-2022
  * Released under the MIT License.
  */
@@ -242,7 +242,7 @@ function output(message, exitCode) {
 var dist = {};
 
 /*!
- * Rapido v1.0.0
+ * Rapido v2.0.0
  * (c) 2022-2022
  * Released under the MIT License.
  */
