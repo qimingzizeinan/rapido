@@ -5,7 +5,6 @@ const execa = require('execa');
 const chalk = require('chalk');
 const semver = require('semver');
 const build = require('./build');
-console.log('build', build);
 
 // 获取packages
 const packages = fs
@@ -105,7 +104,6 @@ async function main() {
 
   // commit
   const { stdout } = await runCmd('git', ['diff'], { stdio: 'pipe' });
-  console.log('stdout', stdout);
   if (stdout) {
     step('\ngit 提交');
     await runCmd('git', ['add', '.']);
@@ -115,13 +113,13 @@ async function main() {
   }
 
   // 发布包
-  // step('\nPublishing packages...');
-  // for (const pkg of releasePackages) {
-  //   await publishPackage(pkg, targetVersion);
-  // }
+  step('\nPublishing packages...');
+  for (const pkg of releasePackages) {
+    await publishPackage(pkg, targetVersion);
+  }
 
-  // // push到github
-  // await runCmd('git', ['push']);
+  // push到github
+  await runCmd('git', ['push']);
 }
 
 (async () => {
