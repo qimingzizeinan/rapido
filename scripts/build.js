@@ -32,9 +32,9 @@ async function build(releasePackages) {
     }
   }
   step(`${padEnd('cli')} install dep...`);
-  cliPackage('install');
+  await cliPackage('install');
   step(`${padEnd('cli')} package building...`);
-  buildPackage('cli');
+  await buildPackage('cli');
 }
 
 // build(['utils']);
