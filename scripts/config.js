@@ -39,7 +39,7 @@ const builds = {
     entry: resolve('packages/cli/src/index.ts'),
     dest: resolve('packages/cli/dist/index.js'),
     format: 'cjs',
-    banner,
+    banner: '#!/usr/bin/env node',
     plugins: [
       json(),
       cjs(),

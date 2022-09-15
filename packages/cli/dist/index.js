@@ -1,8 +1,4 @@
-/*!
- * Rapido v1.0.0
- * (c) 2022-2022
- * Released under the MIT License.
- */
+#!/usr/bin/env node
 'use strict';
 
 var process$4 = require('node:process');
