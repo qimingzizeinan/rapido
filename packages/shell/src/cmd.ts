@@ -1,4 +1,5 @@
 import { spawn } from 'child_process';
+import execa from 'execa'
 
 export type DefaultOptions = {
   cwd?: string;
@@ -204,7 +205,9 @@ export function pwd() {
   return process.cwd();
 }
 
-export function cmd(cmd: string) {
+export async function cmd(cmd: string) {
+  // const {stderr, stdout} = await execa(cmd)
+  
   return new Promise((resolve, reject) => {
     const child = spawn(cmd, defaults);
     let stderr = '';
@@ -245,6 +248,7 @@ export function cmd(cmd: string) {
         reject(output(message, code));
       }
     });
+    
   });
 }
 

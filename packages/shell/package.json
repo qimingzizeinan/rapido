@@ -12,6 +12,7 @@
   "dependencies": {
     "@rapidoq/utils": "workspace:^2.0.0",
     "chalk": "^5.0.1",
+    "execa": "^4.1.0",
     "which": "^2.0.2"
   }
 }
