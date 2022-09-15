@@ -10,6 +10,11 @@
   "author": "qimingzizeinan",
   "license": "MIT",
   "dependencies": {
-    "fs-extra": "^10.1.0"
+    "@types/fs-extra": "^9.0.13",
+    "@types/node-ssh": "^7.0.1",
+    "@types/ssh2": "^1.11.5",
+    "fs-extra": "^10.1.0",
+    "node-ssh": "^13.0.0",
+    "ora": "^6.1.2"
   }
 }

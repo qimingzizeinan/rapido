@@ -1,4 +1,5 @@
 import fs from 'fs-extra';
+export * from './ssh';
 
 /**
  * 将originDir目录下的文件复制到targetDir目录下
@@ -60,6 +61,21 @@ export function remove(path: string) {
  * */
 export function isPathExist(path: string) {
   return fs.pathExistsSync(path);
+}
+
+export function readJsonSync(
+  file: string,
+  options?: string | fs.ReadOptions | undefined
+) {
+  return fs.readJSONSync(file, options);
+}
+
+export function writeJsonSync(
+  file: string,
+  object: any,
+  options?: string | fs.WriteOptions | undefined
+) {
+  return fs.writeJSONSync(file, object, options);
 }
 
 export const fsExtra = fs;
