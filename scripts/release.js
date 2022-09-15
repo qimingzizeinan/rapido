@@ -68,7 +68,8 @@ async function publishPackage(pkgName, version) {
 let inquirer = '';
 
 async function _publish(releasePackages) {
-  step(`\n发布${releasePackages[0]}包流程...`);
+  const package = releasePackages[0];
+  step(`\n发布${package}包流程...`);
   const { release } = await inquirer.prompt({
     type: 'list',
     name: 'release',
@@ -76,7 +77,7 @@ async function _publish(releasePackages) {
     choices: versionIncrements.map(
       (type) =>
         `${type} (${increaseVersion(
-          getPackageVersion(getPkgRoot(releasePackages[0])),
+          getPackageVersion(getPkgRoot(package)),
           type
         )})`
     ),
@@ -104,7 +105,7 @@ async function _publish(releasePackages) {
   );
 
   step('\npnpm building packages...');
-  await build(releasePackages[0]);
+  await build(package);
 
   // 生成 changelog
   step('\nGenerating changelog...');
@@ -115,7 +116,11 @@ async function _publish(releasePackages) {
   if (stdout) {
     step('\ngit 提交');
     await runCmd('git', ['add', '.']);
-    await runCmd('git', ['commit', '-m', `feat: release v${targetVersion}`]);
+    await runCmd('git', [
+      'commit',
+      '-m',
+      `feat: release ${package} v${targetVersion}`,
+    ]);
   } else {
     console.log('No changes to commit.');
   }
