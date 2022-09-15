@@ -1,4 +1,4 @@
 reference.txt
-/node_modules
+/**/node_modules
 /test
 .DS_Store
