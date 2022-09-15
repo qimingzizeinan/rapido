@@ -7,14 +7,15 @@ const semver = require('semver');
 const build = require('./build');
 
 // 获取packages
-const packages = fs
-  .readdirSync(path.resolve(__dirname, '../packages'))
-  .filter((p) => !p.startsWith('.'));
+// const packages = fs
+//   .readdirSync(path.resolve(__dirname, '../packages'))
+//   .filter((p) => !p.startsWith('.'));
+const packages = ['utils', 'shell', 'fs', 'cli'];
 // 获取package 根目录
 const getPkgRoot = (pkg) => path.resolve(__dirname, '../packages/' + pkg);
 
 // 增加版本号
-const increaseVersion = (type) => semver.inc(currentVersion, type);
+const increaseVersion = (version, type) => semver.inc(version, type);
 // 执行terminal 命令
 const runCmd = (bin, args, opts = {}) =>
   execa(bin, args, { stdio: 'inherit', ...opts });
@@ -29,6 +30,13 @@ function updatePackage(pkgRoot, version) {
   pkg.version = version;
   fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n');
 }
+
+function getPackageVersion(pkgRoot) {
+  const pkgPath = path.resolve(pkgRoot, 'package.json');
+  const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'));
+  return pkg.version;
+}
+
 // 发布package
 async function publishPackage(pkgName, version) {
   const pkgRoot = getPkgRoot(pkgName);
@@ -57,20 +65,18 @@ async function publishPackage(pkgName, version) {
 
 let inquirer = '';
 
-async function main() {
-  const { releasePackages } = await inquirer.prompt({
-    type: 'checkbox',
-    name: 'releasePackages',
-    message: 'Select release package',
-    choices: packages,
-  });
-
+async function _publish(releasePackages) {
+  step(`\n发布${releasePackages[0]}包流程...`);
   const { release } = await inquirer.prompt({
     type: 'list',
     name: 'release',
     message: 'Select release type',
     choices: versionIncrements.map(
-      (type) => `${type} (${increaseVersion(type)})`
+      (type) =>
+        `${type} (${increaseVersion(
+          getPackageVersion(getPkgRoot(releasePackages[0])),
+          type
+        )})`
     ),
   });
 
@@ -96,7 +102,7 @@ async function main() {
   );
 
   step('\npnpm building packages...');
-  await build(releasePackages);
+  await build(releasePackages[0]);
 
   // 生成 changelog
   step('\nGenerating changelog...');
@@ -120,6 +126,21 @@ async function main() {
 
   // push到github
   await runCmd('git', ['push']);
+
+  step('\n已完成');
+}
+
+async function main() {
+  const { releasePackages } = await inquirer.prompt({
+    type: 'checkbox',
+    name: 'releasePackages',
+    message: 'Select release package',
+    choices: packages,
+  });
+
+  for (const iterator of releasePackages) {
+    await _publish([iterator]);
+  }
 }
 
 (async () => {

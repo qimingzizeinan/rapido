@@ -22,19 +22,20 @@ function padEnd(name) {
   return name.padEnd(9, ' ');
 }
 
-async function build(releasePackages) {
-  step(`${padEnd('cli')} remove dep...`);
-  await cliPackage('uninstall');
-  for (const iterator of releasePackages) {
-    if (iterator !== 'cli') {
-      await step(`${padEnd(iterator)} package building...`);
-      await buildPackage(iterator);
-    }
+async function build(releasePackage) {
+  if (releasePackage !== 'cli') {
+    await step(`${padEnd(releasePackage)} package building...`);
+    await buildPackage(releasePackage);
+  } else {
+    step(`${padEnd('cli')} remove dep...`);
+    await cliPackage('uninstall');
+
+    step(`${padEnd('cli')} install dep...`);
+    await cliPackage('install');
+
+    step(`${padEnd('cli')} package building...`);
+    await buildPackage('cli');
   }
-  step(`${padEnd('cli')} install dep...`);
-  await cliPackage('install');
-  step(`${padEnd('cli')} package building...`);
-  await buildPackage('cli');
 }
 
 // build(['utils']);
