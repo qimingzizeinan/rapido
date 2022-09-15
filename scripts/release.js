@@ -115,13 +115,13 @@ async function main() {
   }
 
   // 发布包
-  step('\nPublishing packages...');
-  for (const pkg of releasePackages) {
-    await publishPackage(pkg, targetVersion);
-  }
+  // step('\nPublishing packages...');
+  // for (const pkg of releasePackages) {
+  //   await publishPackage(pkg, targetVersion);
+  // }
 
-  // push到github
-  await runCmd('git', ['push']);
+  // // push到github
+  // await runCmd('git', ['push']);
 }
 
 (async () => {
