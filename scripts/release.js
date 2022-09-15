@@ -105,6 +105,7 @@ async function main() {
 
   // commit
   const { stdout } = await runCmd('git', ['diff'], { stdio: 'pipe' });
+  console.log('stdout', stdout);
   if (stdout) {
     step('\ngit 提交');
     await runCmd('git', ['add', '.']);
