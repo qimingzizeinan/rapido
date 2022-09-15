@@ -68,13 +68,9 @@ importers:
 
   packages/cli:
     specifiers:
-      '@rapidoq/fs': workspace:^2.0.1
-      '@rapidoq/shell': workspace:^2.0.1
       commander: ^9.4.0
       inquirer: ^9.1.1
     dependencies:
-      '@rapidoq/fs': link:../fs
-      '@rapidoq/shell': link:../shell
       commander: registry.npmmirror.com/commander/9.4.0
       inquirer: registry.npmmirror.com/inquirer/9.1.1
 
