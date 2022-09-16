@@ -49,20 +49,19 @@ export async function installDep(
   } = {} as any
 ) {
   try {
-    const { message, exitCode } = JSON.parse(
-      (await cmd(
-        `${manerger} ${getInstallpara(manerger)} ${name} ${dev ? '-D' : ''} ${
-          g ? '-g' : ''
-        }`
-      )) as any
+    const { stdout, stderr } = await cmd(
+      `${manerger} ${getInstallpara(manerger)} ${name} ${dev ? '-D' : ''} ${
+        g ? '-g' : ''
+      }`
     );
-    if (exitCode === 0) {
+
+    if (stdout) {
       return true;
     } else {
-      log(message);
+      log(stderr);
     }
   } catch (error) {
-    log(JSON.stringify(error));
+    log(error.stderr);
   }
 }
 
@@ -77,17 +76,15 @@ export async function uninstallDep(
   }: { manerger: 'npm' | 'pnpm' | 'yarn'; g: boolean } = {} as any
 ) {
   try {
-    const { message, exitCode } = JSON.parse(
-      (await cmd(
-        `${manerger} ${getUnInstallpara(manerger)} ${name} ${g ? '-g' : ''}`
-      )) as any
+    const { stdout, stderr } = await cmd(
+      `${manerger} ${getUnInstallpara(manerger)} ${name} ${g ? '-g' : ''}`
     );
-    if (exitCode === 0) {
+    if (stdout) {
       return true;
     } else {
-      log(message);
+      log(stderr);
     }
   } catch (error) {
-    log(JSON.stringify(error));
+    log(error.stderr);
   }
 }

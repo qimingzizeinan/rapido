@@ -16,11 +16,7 @@ export async function getGitStatus() {
  * @returns
  */
 export async function getGitBranch() {
-  try {
-    return await cmd('git branch');
-  } catch (error) {
-    log(JSON.stringify(error));
-  }
+  return await cmd('git branch');
 }
 
 /**
@@ -30,16 +26,17 @@ export async function gitPush() {
   try {
     return await cmd('git push');
   } catch (error) {
-    log(JSON.stringify(error));
+    log(error.stderr);
   }
 }
+
 /**
  * 获取git 分支列表
  */
 export async function getGitBranchList() {
-  const result = JSON.parse((await getGitBranch()) as any);
+  const result = await getGitBranch();
   if (result) {
-    const splitList = result.message.split('\n').map((item) => {
+    const splitList = result.stdout.split('\n').map((item) => {
       return item.replace(',', '').trim();
     });
     return splitList.filter((item) => item);
@@ -67,10 +64,10 @@ export async function getGitCurrentBranch() {
  */
 export async function gitAddAll() {
   try {
-    const { message } = JSON.parse((await cmd('git add .')) as string);
-    return message;
+    const { stdout } = await cmd('git add .');
+    return stdout;
   } catch (error) {
-    log(JSON.stringify(error));
+    log(error.stderr);
   }
 }
 
@@ -79,12 +76,10 @@ export async function gitAddAll() {
  */
 export async function gitCommit(info: string) {
   try {
-    const { message } = JSON.parse(
-      (await cmd(`git commit -m "${info}"`)) as string
-    );
-    return message;
+    const { stdout } = await cmd(`git commit -m "${info}"`);
+    return stdout;
   } catch (error) {
-    log(JSON.stringify(error));
+    log(error.stderr);
   }
 }
 
@@ -95,10 +90,9 @@ export async function gitCommit(info: string) {
  */
 export async function switchGitBranch(branchName: string) {
   try {
-    const result = (await cmd(`git checkout ${branchName}`)) as string;
-    const { message } = JSON.parse(result);
-    return message;
+    const result = await cmd(`git checkout ${branchName}`);
+    return result.stdout || result.stderr;
   } catch (error) {
-    log(JSON.stringify(error));
+    log(error.stderr);
   }
 }

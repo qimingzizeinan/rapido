@@ -55,7 +55,13 @@ const builds = {
     dest: resolve('packages/utils/dist/index.js'),
     format: 'cjs',
     banner,
-    plugins: [node(), cjs()],
+    plugins: [
+      node({
+        exportConditions: ['node'], // add node option here,
+        // preferBuiltins: false,
+      }),
+      cjs(),
+    ],
     external: [],
   },
 };

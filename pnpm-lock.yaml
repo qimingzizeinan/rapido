@@ -94,13 +94,14 @@ importers:
       zip-local: ^0.3.5
     dependencies:
       '@rapidoq/utils': link:../utils
-      '@types/fs-extra': 9.0.13
-      '@types/ssh2': 1.11.5
       fs-extra: registry.npmmirror.com/fs-extra/10.1.0
       inquirer: 9.1.1
       node-ssh: 13.0.0
       ora: 6.1.2
       zip-local: 0.3.5
+    devDependencies:
+      '@types/fs-extra': 9.0.13
+      '@types/ssh2': 1.11.5
 
   packages/shell:
     specifiers:
@@ -376,7 +377,7 @@ packages:
     resolution: {integrity: sha512-nEnwB++1u5lVDM2UI4c1+5R+FYaKfaAzS4OococimjVm3nQw3TuzH5UNsocrcTBbhnerblyHj4A49qXbIiZdpA==}
     dependencies:
       '@types/node': 18.7.16
-    dev: false
+    dev: true
 
   /@types/minimist/1.2.2:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
@@ -388,7 +389,7 @@ packages:
 
   /@types/node/18.7.16:
     resolution: {integrity: sha512-EQHhixfu+mkqHMZl1R2Ovuvn47PUw18azMJOTwSZr9/fhzHNGXAJ0ma0dayRVchprpCj0Kc1K1xKoWaATWF1qg==}
-    dev: false
+    dev: true
 
   /@types/normalize-package-data/2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
@@ -402,7 +403,7 @@ packages:
     resolution: {integrity: sha512-RaBsPKr+YP/slH8iR7XfC7chyomU+V57F/gJ5cMSP2n6/YWKVmeRLx7lrkgw4YYLpEW5lXLAdfZJqGo0PXboSA==}
     dependencies:
       '@types/node': 18.7.16
-    dev: false
+    dev: true
 
   /@vue/compiler-core/3.2.39:
     resolution: {integrity: sha512-mf/36OWXqWn0wsC40nwRRGheR/qoID+lZXbIuLnr4/AngM0ov8Xvv8GHunC0rKRIkh60bTqydlqTeBo49rlbqw==}
