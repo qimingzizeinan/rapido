@@ -2,6 +2,18 @@
 
 import path from 'path';
 import chalk from 'chalk';
+import ora from 'ora';
+
+import zipper from 'zip-local';
+
+import inquirer from 'inquirer';
+import * as commander from 'commander';
+
+export const rora = ora;
+export const rchalk = chalk;
+export const rzipper = zipper;
+export const rinquirer = inquirer;
+export const rcommander = commander;
 
 export function log(content: string) {
   console.log(content);

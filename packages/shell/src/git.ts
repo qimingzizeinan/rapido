@@ -26,7 +26,7 @@ export async function gitPush() {
   try {
     return await cmd('git push');
   } catch (error) {
-    log(error.stderr);
+    log((error as any).stderr);
   }
 }
 
@@ -67,7 +67,7 @@ export async function gitAddAll() {
     const { stdout } = await cmd('git add .');
     return stdout;
   } catch (error) {
-    log(error.stderr);
+    log((error as any).stderr);
   }
 }
 
@@ -79,7 +79,7 @@ export async function gitCommit(info: string) {
     const { stdout } = await cmd(`git commit -m "${info}"`);
     return stdout;
   } catch (error) {
-    log(error.stderr);
+    log((error as any).stderr);
   }
 }
 
@@ -93,6 +93,6 @@ export async function switchGitBranch(branchName: string) {
     const result = await cmd(`git checkout ${branchName}`);
     return result.stdout || result.stderr;
   } catch (error) {
-    log(error.stderr);
+    log((error as any).stderr);
   }
 }

@@ -32,8 +32,15 @@ const builds = {
     dest: resolve('packages/fs/dist/index.js'),
     format: 'cjs',
     banner,
-    plugins: [node(), cjs()],
-    external: [],
+    plugins: [
+      cjs(),
+      node({
+        exportConditions: ['node'], // add node option here,
+        preferBuiltins: false,
+      }),
+      json(),
+    ],
+    external: ['node-ssh'],
   },
   cli: {
     entry: resolve('packages/cli/src/index.ts'),
@@ -48,7 +55,7 @@ const builds = {
         // preferBuiltins: false,
       }),
     ],
-    external: [],
+    external: ['node-ssh'],
   },
   utils: {
     entry: resolve('packages/utils/src/index.ts'),
@@ -56,11 +63,12 @@ const builds = {
     format: 'cjs',
     banner,
     plugins: [
+      json(),
+      cjs(),
       node({
         exportConditions: ['node'], // add node option here,
         // preferBuiltins: false,
       }),
-      cjs(),
     ],
     external: [],
   },

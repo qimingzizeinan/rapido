@@ -1,3 +1,10 @@
+import ora from 'ora';
+import * as commander from 'commander';
+export declare const rora: typeof ora;
+export declare const rchalk: import("chalk").ChalkInstance;
+export declare const rzipper: any;
+export declare const rinquirer: any;
+export declare const rcommander: typeof commander;
 export declare function log(content: string): void;
 /**
  * 拼接解析

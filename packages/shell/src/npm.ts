@@ -61,7 +61,7 @@ export async function installDep(
       log(stderr);
     }
   } catch (error) {
-    log(error.stderr);
+    log((error as any).stderr);
   }
 }
 
@@ -85,6 +85,6 @@ export async function uninstallDep(
       log(stderr);
     }
   } catch (error) {
-    log(error.stderr);
+    log((error as any).stderr);
   }
 }

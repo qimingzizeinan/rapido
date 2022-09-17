@@ -1,27 +1,31 @@
 /// <reference types="node" />
-export declare type DefaultOptions = {
-    cwd?: string;
-    env?: NodeJS.ProcessEnv;
-    windowsHide?: boolean;
-    shell: string | boolean;
-};
-export declare type OutPut = {
-    stdout: string;
-    stderr: string;
-    exitCode: number;
-};
-export declare function config(): void;
-export declare function exitCodeInfo(exitCode: number | null): string | undefined;
+import execa from 'execa';
 /**
  * 切换工作目录
  * @param cwd
  *
  */
-export declare function cd(cwd: string): void;
-export declare function errnoMessage(errno: number | undefined): string;
+export declare function cd(cwd: string): Promise<void>;
 /**
  * 获取执行目录
  */
 export declare function pwd(): string;
-export declare function cmd(cmd: string): Promise<unknown>;
-export declare function output(message: string, exitCode: number | string | undefined | null): string;
+export declare function cmd(cmd: string, options?: execa.SyncOptions<string> | undefined): Promise<execa.ExecaSyncReturnValue<string>>;
+export declare const rexec: {
+    (file: string, arguments?: readonly string[] | undefined, options?: execa.Options<string> | undefined): execa.ExecaChildProcess<string>;
+    (file: string, arguments?: readonly string[] | undefined, options?: execa.Options<null> | undefined): execa.ExecaChildProcess<Buffer>;
+    (file: string, options?: execa.Options<string> | undefined): execa.ExecaChildProcess<string>;
+    (file: string, options?: execa.Options<null> | undefined): execa.ExecaChildProcess<Buffer>;
+    sync(file: string, arguments?: readonly string[] | undefined, options?: execa.SyncOptions<string> | undefined): execa.ExecaSyncReturnValue<string>;
+    sync(file: string, arguments?: readonly string[] | undefined, options?: execa.SyncOptions<null> | undefined): execa.ExecaSyncReturnValue<Buffer>;
+    sync(file: string, options?: execa.SyncOptions<string> | undefined): execa.ExecaSyncReturnValue<string>;
+    sync(file: string, options?: execa.SyncOptions<null> | undefined): execa.ExecaSyncReturnValue<Buffer>;
+    command(command: string, options?: execa.Options<string> | undefined): execa.ExecaChildProcess<string>;
+    command(command: string, options?: execa.Options<null> | undefined): execa.ExecaChildProcess<Buffer>;
+    commandSync(command: string, options?: execa.SyncOptions<string> | undefined): execa.ExecaSyncReturnValue<string>;
+    commandSync(command: string, options?: execa.SyncOptions<null> | undefined): execa.ExecaSyncReturnValue<Buffer>;
+    node(scriptPath: string, arguments?: readonly string[] | undefined, options?: execa.NodeOptions<string> | undefined): execa.ExecaChildProcess<string>;
+    node(scriptPath: string, arguments?: readonly string[] | undefined, options?: execa.Options<null> | undefined): execa.ExecaChildProcess<Buffer>;
+    node(scriptPath: string, options?: execa.Options<string> | undefined): execa.ExecaChildProcess<string>;
+    node(scriptPath: string, options?: execa.Options<null> | undefined): execa.ExecaChildProcess<Buffer>;
+};

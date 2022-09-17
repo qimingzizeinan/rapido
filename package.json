@@ -13,6 +13,7 @@
     "cli:install": "pnpm uninstall @rapidoq/fs @rapidoq/shell --filter @rapidoq/cli && pnpm install @rapidoq/fs @rapidoq/shell --filter @rapidoq/cli",
     "build:all": "pnpm run build:shell && pnpm run build:fs && pnpm run build:utils && pnpm run cli:install && pnpm run build:cli ",
     "release": "node scripts/release.js",
+    "test:commad": "node test/console.js",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "devDependencies": {
@@ -22,6 +23,9 @@
     "@changesets/cli": "^2.24.4",
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
+    "@rapidoq/fs": "workspace:^2.0.2",
+    "@rapidoq/shell": "workspace:^2.0.2",
+    "@rapidoq/utils": "workspace:^2.0.2",
     "@rollup/plugin-alias": "^3.1.9",
     "@rollup/plugin-babel": "^5.3.1",
     "@rollup/plugin-commonjs": "^22.0.2",
@@ -37,6 +41,7 @@
     "husky": "^8.0.1",
     "inquirer": "^9.1.1",
     "jest": "^29.0.2",
+    "node-ssh": "^13.0.0",
     "rollup": "^2.79.0",
     "rollup-plugin-dts": "^4.2.2",
     "rollup-plugin-esbuild": "^4.10.1",
