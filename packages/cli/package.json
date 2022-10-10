@@ -14,5 +14,9 @@
   "license": "MIT",
   "devDependencies": {
     "@rapidoq/utils": "workspace:^2.0.2"
+  },
+  "dependencies": {
+    "@rapidoq/fs": "workspace:^2.0.5",
+    "@rapidoq/shell": "workspace:^2.0.4"
   }
 }

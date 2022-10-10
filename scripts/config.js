@@ -1,6 +1,8 @@
 const path = require('path');
 const ts = require('rollup-plugin-typescript2');
 import json from '@rollup/plugin-json';
+import { babel } from '@rollup/plugin-babel';
+import commonjs from '@rollup/plugin-commonjs';
 
 const cjs = require('@rollup/plugin-commonjs');
 const node = require('@rollup/plugin-node-resolve').nodeResolve;
@@ -24,7 +26,7 @@ const builds = {
     dest: resolve('packages/shell/dist/index.js'),
     format: 'cjs',
     banner,
-    plugins: [node(), cjs()],
+    plugins: [cjs()],
     external: [],
   },
   fs: {
@@ -50,10 +52,10 @@ const builds = {
     plugins: [
       json(),
       cjs(),
-      node({
-        exportConditions: ['node'], // add node option here,
-        // preferBuiltins: false,
-      }),
+      // node({
+      //   exportConditions: ['node'], // add node option here,
+      //   // preferBuiltins: false,
+      // }),
     ],
     external: ['node-ssh'],
   },
@@ -63,14 +65,18 @@ const builds = {
     format: 'cjs',
     banner,
     plugins: [
+      commonjs(),
       json(),
       cjs(),
-      node({
-        exportConditions: ['node'], // add node option here,
-        // preferBuiltins: false,
+      babel({
+        exclude: 'node_modules/**', // 只编译我们的源代码
       }),
+      // node({
+      //   exportConditions: ['node'], // add node option here,
+      //   preferBuiltins: false,
+      // }),
     ],
-    external: [],
+    external: ['node'],
   },
 };
 
