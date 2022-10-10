@@ -78,8 +78,8 @@ importers:
 
   packages/cli:
     specifiers:
-      '@rapidoq/fs': workspace:^2.0.6
-      '@rapidoq/shell': workspace:^2.0.5
+      '@rapidoq/fs': workspace:^2.0.8
+      '@rapidoq/shell': workspace:^2.0.6
       '@rapidoq/utils': workspace:^2.0.2
     dependencies:
       '@rapidoq/fs': link:../fs

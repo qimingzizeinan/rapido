@@ -1,6 +1,6 @@
 {
   "name": "@rapidoq/cli",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -16,7 +16,7 @@
     "@rapidoq/utils": "workspace:^2.0.2"
   },
   "dependencies": {
-    "@rapidoq/fs": "workspace:^2.0.6",
-    "@rapidoq/shell": "workspace:^2.0.5"
+    "@rapidoq/fs": "workspace:^2.0.8",
+    "@rapidoq/shell": "workspace:^2.0.6"
   }
 }
