@@ -5,6 +5,7 @@ export declare function createSSH(): NodeSSH;
  * @param {*} CONFIG 配置文件内容
  */
 export declare function selectDeployEnv(rootConfig: any): Promise<unknown>;
+export declare function importAsync(path: any): Promise<unknown>;
 export declare function getConfig(): Promise<any>;
 /**
  * 压缩本地build出来的文件
