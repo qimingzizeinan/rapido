@@ -65,16 +65,16 @@ const builds = {
     format: 'cjs',
     banner,
     plugins: [
-      commonjs(),
+      // commonjs(),
       json(),
       cjs(),
-      babel({
-        exclude: 'node_modules/**', // 只编译我们的源代码
-      }),
-      // node({
-      //   exportConditions: ['node'], // add node option here,
-      //   preferBuiltins: false,
+      // babel({
+      //   exclude: 'node_modules/**', // 只编译我们的源代码
       // }),
+      node({
+        exportConditions: ['node'], // add node option here,
+        preferBuiltins: false,
+      }),
     ],
     external: ['node'],
   },
