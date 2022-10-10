@@ -1,6 +1,6 @@
 {
   "name": "@rapidoq/cli",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,8 +13,10 @@
   "author": "qimingzizeinan",
   "license": "MIT",
   "devDependencies": {
-    "@rapidoq/fs": "workspace:^2.0.2",
-    "@rapidoq/shell": "workspace:^2.0.2",
     "@rapidoq/utils": "workspace:^2.0.2"
+  },
+  "dependencies": {
+    "@rapidoq/fs": "workspace:^2.0.3",
+    "@rapidoq/shell": "workspace:^2.0.3"
   }
 }
