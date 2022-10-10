@@ -34,10 +34,10 @@ const builds = {
     banner,
     plugins: [
       cjs(),
-      node({
-        exportConditions: ['node'], // add node option here,
-        preferBuiltins: false,
-      }),
+      // node({
+      //   exportConditions: ['node'], // add node option here,
+      //   preferBuiltins: false,
+      // }),
       json(),
     ],
     external: ['node-ssh'],
